@@ -22,6 +22,7 @@
  $(document).ready(function(){
   $().UItoTop({ easingType: 'easeOutQuart' });
   $('#stuck_container').tmStickUp({});
+  $("#footer").load("../footer.html");
   });
 </script>
 <!--[if lt IE 9]>
@@ -74,38 +75,61 @@
 <!--=====================
           Content
 ======================-->
-<section class="content"><div class="ic">Template</div>
+<section class="content"><div class="ic">News</div>
   <div class="container">
     <div class="row">
       <div class="grid_12">
-        <div class="ta__center">
-          <h3 class="head1">Template</h3>
-          
-        </div>
+        <h3 class="head1">News</h3>
       </div>
+      <!--=======================
+              Start First Entry
+      ===========================-->
+      <div class="grid_6">
+        <img src="news/images/index_owncloud_news.png" alt="" class="img_inner fleft">
+        <div class="extra_wrapper">
+          <div class="text1">
+            <time datetime="2014-01-01">10 January</time>
+            <a href="news/2016/Jan/10_Beginning">Everything has a beginning</a>
+          </div>
+          Created this website as well as a home file server
+          using Debian linux running on a Hyper-V setup. 
+          The file side runs an ownCloud installation with ssl
+          that I use for project teams and family needs. Originally
+          started by 
+          <a href="http://www.berkeley-hyperloop.com/" style="color:#2673b4;"><strong>Berkeley Hyperloop's</strong></a>
+          need for more file storage that everyone could access.
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--=======================
+              End First/Start Second Entry
+      ===========================-->
+      <div class="grid_6">
+        <img src="news/images/index_arch_news.png" alt="" class="img_inner fleft">
+        <div class="extra_wrapper">
+          <div class="text1">
+            <time datetime="2014-01-01">History</time>
+            <a href="news/2016/Jan/10_Before">Before this Website</a>
+          </div>
+          This is the second time I have created a self hosted website.
+          The first was during my senior year of high school after having taken a
+          Dreamweaver class. I setup a LAMP stack using Ubuntu 12.04 as the host OS
+          on a computer that was sitting around at my house. This was mainly a fun 
+          side project to showcase the site that I had made. I have reuploaded the site
+          <a href="old/hs_web/index.html" style="color:#2673b4;"><strong>here</strong></a>
+          if you would like to check it out. Additionally...          
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--=======================
+              End Second Entry
+      ===========================-->
     </div>
   </div>
 </section>
 <!--==============================
               footer
 =================================-->
-<footer id="footer">
-  <div class="container">
-    <div class="row">
-      <div class="grid_12">
-      <!--
-        <div class="socials">
-          <a href="#" class="fa fa-twitter"></a>
-          <a href="#" class="fa fa-facebook"></a>
-          <a href="#" class="fa fa-google-plus"></a>
-          <a href="#" class="fa fa-youtube-play"></a>
-        </div>
-      -->
-        <div class="copyright"><span class="brand">Mitchell Oleson</span> &copy; <span id="copyright-year"></span> | <a href="../privacypolicy.html">Privacy Policy</a> <div>Website designed by <a href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
+<div id="footer"></div>
 </body>
 </html>

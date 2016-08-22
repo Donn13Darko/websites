@@ -21,6 +21,7 @@
  $(document).ready(function(){
   $().UItoTop({ easingType: 'easeOutQuart' });
   $('#stuck_container').tmStickUp({});
+  $("#footer").load("footer.html");
   });
 </script>
 <!--[if lt IE 9]>
@@ -162,23 +163,6 @@
 <!--==============================
               footer
 =================================-->
-<footer id="footer">
-  <div class="container">
-    <div class="row">
-      <div class="grid_12">
-      <!--
-        <div class="socials">
-          <a href="#" class="fa fa-twitter"></a>
-          <a href="#" class="fa fa-facebook"></a>
-          <a href="#" class="fa fa-google-plus"></a>
-          <a href="#" class="fa fa-youtube-play"></a>
-        </div>
-      -->
-        <div class="copyright"><span class="brand">Web Design</span> &copy; <span id="copyright-year"></span> | <a href="privacypolicy.html">Privacy Policy</a> <div>Website designed by <a href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
+<div id="footer"></div>
 </body>
 </html>

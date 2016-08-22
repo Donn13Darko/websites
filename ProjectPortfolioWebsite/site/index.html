@@ -22,6 +22,7 @@
  $(document).ready(function(){
   $().UItoTop({ easingType: 'easeOutQuart' });
   $('#stuck_container').tmStickUp({});
+  $("#footer").load("footer.html");
   });
 </script>
 <!--[if lt IE 9]>
@@ -94,7 +95,7 @@
               <img src="images/bann_img3.jpg" alt="">
               <div class="bann_capt"><span>Mechanical Engineering</span></div>
             </a>
-            <a href="pages/interests.html" class="banner">
+            <a href="interests_main.html" class="banner">
               <img src="images/bann_img4.jpg" alt="">
               <div class="bann_capt"><span>Interests</span></div>
             </a>
@@ -104,12 +105,9 @@
           <div class="row">
             <div class="grid_8 preffix_2">
               <div class="st1">
-              I am currently double majoring in EECS & ME at the UC Berkeley College of Engineering. 
-              Driven by curiosity, I love to learn and take on challenges in all aspects of my life. 
-              Seeking to fulfill this drive I have joined two project teams, Berkeley Hyperloop and Cal 
-              Rover, and am a competitor on the BERKE1337 cybersecurity competition team.
+              Currently double majoring in Mechanical Engineering & Electrical Engineering and Computer Science at the UC Berkeley College of Engineering. I am driven by curiosity and learn by taking on challenges in all aspects of my life. Seeking to fulfill this drive I have joined two project teams, Berkeley Hyperloop and Cal Rover, and am a competitor on the BERKE1337 Cybersecurity Competition Team.
               </div>
-              <a href="about_main.html" class="btn">more</a>
+              <a href="about_main.html" class="btn">More</a>
             </div>
           </div>
         </div>
@@ -123,7 +121,7 @@
         <h3 class="head1">Latest News</h3>
       </div>
       <div class="grid_6">
-        <img src="images/index_owncloud_news.png" alt="" class="img_inner fleft">
+        <img src="pages/news/images/index_owncloud_news.png" alt="" class="img_inner fleft">
         <div class="extra_wrapper">
           <div class="text1">
             <time datetime="2014-01-01">10 January</time>
@@ -140,7 +138,7 @@
         <div class="clear"></div>
       </div>
       <div class="grid_6">
-        <img src="images/index_arch_news.png" alt="" class="img_inner fleft">
+        <img src="pages/news/images/index_arch_news.png" alt="" class="img_inner fleft">
         <div class="extra_wrapper">
           <div class="text1">
             <time datetime="2014-01-01">History</time>
@@ -157,7 +155,7 @@
         <div class="clear"></div>
       </div>
       <div align="center">
-        <a href="pages/news_links.html" class="btn">older</a>
+        <a href="pages/news_links.html" class="btn">Older</a>
       </div>
     </div>
   </div>
@@ -165,35 +163,35 @@
   <div class="container">
     <div class="row">
       <div class="grid_12">
-        <h3>Projects & Teams</h3>
+        <h3>Recent Projects & Teams</h3>
       </div>
       <div class="grid_3">
-        <div class="ih-item circle effect2 left_to_right"><a href="#">
-        <div class="img"><img src="images/index_bloop_circle.png" alt="img"></div>
+        <div class="ih-item circle effect2 left_to_right"><a href="pages/projects/berkeley_hyperloop.html">
+        <div class="img"><img src="pages/projects/images/index_bloop_circle.png" alt="img"></div>
         <div class="info">
           <h3>Berkeley Hyperloop</h3>
           <p>learn more</p>
         </div></a></div>
       </div>
       <div class="grid_3">
-        <div class="ih-item circle effect2 left_to_right"><a href="#">
-        <div class="img"><img src="images/index_rover_circle.png" alt="img"></div>
+        <div class="ih-item circle effect2 left_to_right"><a href="pages/projects/cal_rover.html">
+        <div class="img"><img src="pages/projects/images/index_rover_circle.png" alt="img"></div>
         <div class="info">
           <h3>Cal AIAA Robo-Ops</h3>
           <p>learn more</p>
         </div></a></div>
       </div>
       <div class="grid_3">
-        <div class="ih-item circle effect2 left_to_right"><a href="#">
-        <div class="img"><img src="images/index_berke1337_circle.png" alt="img"></div>
+        <div class="ih-item circle effect2 left_to_right"><a href="pages/projects/berke1337.html">
+        <div class="img"><img src="pages/projects/images/index_berke1337_circle.png" alt="img"></div>
         <div class="info">
           <h3>BERKE1337</h3>
           <p>learn more</p>
         </div></a></div>
       </div>
       <div class="grid_3">
-        <div class="ih-item circle effect2 left_to_right"><a href="#">
-        <div class="img"><img src="images/index_owncloud_circle.png" alt="img"></div>
+        <div class="ih-item circle effect2 left_to_right"><a href="pages/projects/owncloud.html">
+        <div class="img"><img src="pages/projects/images/index_owncloud_circle.png" alt="img"></div>
         <div class="info">
           <h3>Home Server</h3>
           <p>learn more</p>
@@ -205,23 +203,6 @@
 <!--==============================
               footer
 =================================-->
-<footer id="footer">
-  <div class="container">
-    <div class="row">
-      <div class="grid_12">
-      <!--
-        <div class="socials">
-          <a href="#" class="fa fa-twitter"></a>
-          <a href="#" class="fa fa-facebook"></a>
-          <a href="#" class="fa fa-google-plus"></a>
-          <a href="#" class="fa fa-youtube-play"></a>
-        </div>
-      -->
-        <div class="copyright"><span class="brand">Mitchell Oleson</span> &copy; <span id="copyright-year"></span> | <a href="privacypolicy.html">Privacy Policy</a> <div>Website designed by <a href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
+<div id="footer"></div>
 </body>
 </html>

@@ -81,8 +81,54 @@
       <div class="grid_12">
         <div class="ta__center">
           <h3 class="head1">Home Server</h3>
-          
         </div>
+        <div class="ta__center">
+          <h3>Creation Process</h3>
+        </div>
+        <ol>        
+          <li> 1) Create the VM and set it up for whichever OS you choose (I used Debian Linux). Make sure to change the processor core count, availble memory and port forwarding scheme. Also be sure to load the iso file into the CD drive before first boot. Also, depending on what you are running with there might be a guest additions section that you should install in order to make the most out of the setup (it might run slow otherwise). </li>
+          <br/>
+          <li> 2) Follow the installation instruction and setup the defaults as you please. If the installer allows you to choose additional packages select the server (and ssh) packages if available as they will get most of the necessary base packages that you could possibly miss. </li>
+          <br/>
+          <li> 3) If the installer didn't specify an optional server package then you most likely will want to go with a LAMP stack (Linux, Apache, MySQL, PHP). This will give the website or server a large amount of capability while also having numerous online guides on how to set it up. Make sure to install mysql-server as it is not included as part of the later installs. </li>
+          <br/>
+          <li> 4) Once you have the base system installed, follow this guide to install and configure ownCloud "http://en.flossmanuals.net/owncloud/owncloud-server/". Make sure that you select and configure the correct options (i.e. datbase type and lcoation otherwise there could be problems). Also change the second chmod from 'chmod 664 /var/www/*' to 'chmod 764 /var/www/*' otherwise you will not have the right permissions. If you do not wish to run a file server, then put the website in the html folder or create the own folder within the www directory and enable the site by creating a config file in the sites enabled directory. After that you can skip to the sections on security and hardening of the server. Can also checkout "https://doc.owncloud.org/server/8.0/admin_manual/installation/installation_wizard.html" for a script about file permissions. </li>
+          <br/>
+          <li> 5) Now head over to a local web browser and see if you can reach the ownCloud logon page. If you can't then there might be a problem with the website config files so check to make sure that they are sending you to the correct directry and that you have permission to view those files. Also it might be that you are not listening on the correct ports so check out the ports config file in the apache install directory. Otherwise, if you get the ownCloud "untrusted IP address" instead of a login, just head over to the ownCloud config file and whitelist the IP address so that ownCloud knows it is a trusted address. </li>
+          <br/>
+          <li> 7) Next we will configure the server to be accessable to the world wide web. The first step here will be to enable and setup port forwarding on the local router. To do this open a new tab in the web browser and type "192.168.1.1" this should bring up the admin login page for the router. Once you have logged on head over to port forwarding/redirects and setup whichever ports you decided on to be forwarded to the computer and ultimately to the virtual box. </li>
+          <br/>
+          <li> 6) Next, quickly search "my ip" in google and take note of the numbers displayed there. You will want to open a new page and type those exact numbers (including periods) followed by the web server port number we designated earlier. This will be in the form "xxx.xxx.xxx.xxx:xxxx". Once this is done you should see the ownCloud logon address or the "untrusted IP address" again (follow the same steps above to remedy this). If you get a 404 page not found error then most likely the router is setup wrong or the selected port is blocked by your ISP (If this is the case just change the external starting ip within the router port forwarding and leave everything else the same). </li>
+          <br/>
+          <li> 7) Once you are able to connect through the public IP address, head over to noip or similar service that will let you associate an IP address with a URL. This will make it easy to reach/remember the server IP since many of these have programs that automatically update the public IP address anytime it changes. Also these can be configured as a port 80 redirect that sends the traffic directly to the ports you setup earlier. **Important** If you are running a file server then you cannont enable url masking as this will mess with the config of the file server and make the ownCloud install unaccessable. </li>
+          <br/>
+          <li> 8) Finally, now that everything is setup, it is time to harden and customize the configuration files so that there is no unwanted access to the system:
+            <br/>&emsp;
+              a) apache2 config must not allow file brownsing views (i.e. Options -Indexes)
+              <br/>&emsp;
+              b) Change the php max file upload size from 2M to whatever you wish (need to also change the max_access time in order to allow the longer uploads and other values as you see fit). Also if you enable apps you might need to set 'always_populate_raw_post_data' to -1.
+              <br/>&emsp;
+              c) HTTPS will secure each individual connection and can be setup by using openssl and following the guide at "https://beeznest.wordpress.com/2008/04/25/how-to-configure-https-on-apache-2/", "https://www.sslshopper.com/apache-server-ssl-installation-instructions.html", "https://www.sslshopper.com/apache-redirect-http-to-https.html", "http://www.onlamp.com/2008/03/04/step-by-step-configuring-ssl-under-apache.html".
+              <br/>&emsp;
+              d) Some more potential hardening procedures: "https://doc.owncloud.org/server/8.2/admin_manual/configuration_server/harden_server.html"
+              <br/>&emsp;
+              e) Change AJAX to cron job for speed boost (need to install sudo and create a script to call the cron.php file otherwise www-data will always return busy): "https://doc.owncloud.org/server/8.2/admin_manual/configuration_server/background_jobs_configuration.html", "https://forum.owncloud.org/viewtopic.php?f=29&t=25198"
+              <br/>&emsp;
+              f) Use cron jobs and a script to "keep_alive" an internet connection that keeps suspending.
+              <br/>&emsp;
+              g) Setup memory chaching with APCu by following: "https://doc.owncloud.org/server/8.2/admin_manual/configuration_server/caching_configuration.html"
+              <br/>&emsp;
+              h) Add apps and personal configuration details:
+                  Supported: Gallery+, Music server, Doc editor, Video Viewer
+                  Third Party: Calendar Plus, Storage Charts 2, Disable Remember Login, EPub Reader
+              <br/>&emsp;
+              i) Speed grade: Under [mysqld] set "innodb_flush_log_at_trx_commit = 2" in the my.cnf file and enable the slow query log (this should already have variables but just in case "http://dev.mysql.com/doc/refman/5.7/en/slow-query-log.html" and use the config file not the database commands.)
+              <br/>&emsp;
+              j) Configure a static internal ip and port forwarding so that the server doesn't loose connection.
+              <br/>&emsp;
+              k) SSH securing: Use ssh-keygen to generate a private and public key with a password. Copy the public key to ~/.ssh/ and at the end of /etc/ssh/sshd_config add "AuthenticationMethods publickey,password" to require both a key and password at ssh logon. This coupled with a password on the private key will offer fairly strong protection from unauthorized users. Follow this for a basic setup idea "https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server". Also once the key is setup, move it to a safe hidden location (can be ~/.ssh/ or I used C:/Windows/SSH/ since it requires Admin access and then I made the folder hidden) </li>
+            </li>
+          </ol>
       </div>
     </div>
   </div>
